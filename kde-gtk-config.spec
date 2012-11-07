@@ -1,7 +1,7 @@
 Summary:	GTK2 and GTK3 configurator for KDE
 Name:		kde-gtk-config
-Version:	2.1
-Release:	2
+Version:	2.1.1
+Release:	1
 License:	GPLv3
 Group:		Graphical desktop/KDE
 Url:		https://projects.kde.org/projects/playground/base/kde-gtk-config
