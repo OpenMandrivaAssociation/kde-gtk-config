@@ -1,6 +1,6 @@
-diff -Naur kde-gtk-config-2.1.orig/src/appearancegtk2.cpp kde-gtk-config-2.1/src/appearancegtk2.cpp
---- kde-gtk-config-2.1.orig/src/appearancegtk2.cpp	2012-03-05 19:02:20.000000000 +0100
-+++ kde-gtk-config-2.1/src/appearancegtk2.cpp	2012-04-11 01:59:25.000000000 +0200
+diff -Naur kde-gtk-config-2.2.orig/src/appearancegtk2.cpp kde-gtk-config-2.2/src/appearancegtk2.cpp
+--- kde-gtk-config-2.2.orig/src/appearancegtk2.cpp	2012-03-05 19:02:20.000000000 +0100
++++ kde-gtk-config-2.2/src/appearancegtk2.cpp	2012-04-11 01:59:25.000000000 +0200
 @@ -82,7 +82,7 @@
      gtkrc.remove();
  
@@ -40,9 +40,9 @@ diff -Naur kde-gtk-config-2.1.orig/src/appearancegtk2.cpp kde-gtk-config-2.1/src
  }
  
  QStringList AppearanceGTK2::installedThemes() const
-diff -Naur kde-gtk-config-2.1.orig/src/appearencegtk.h kde-gtk-config-2.1/src/appearencegtk.h
---- kde-gtk-config-2.1.orig/src/appearencegtk.h	2012-03-05 19:02:20.000000000 +0100
-+++ kde-gtk-config-2.1/src/appearencegtk.h	2012-04-11 01:40:22.000000000 +0200
+diff -Naur kde-gtk-config-2.2.orig/src/appearencegtk.h kde-gtk-config-2.2/src/appearencegtk.h
+--- kde-gtk-config-2.2.orig/src/appearencegtk.h	2012-03-05 19:02:20.000000000 +0100
++++ kde-gtk-config-2.2/src/appearencegtk.h	2012-04-11 01:40:22.000000000 +0200
 @@ -30,7 +30,7 @@
  class AbstractAppearance;
  /**
