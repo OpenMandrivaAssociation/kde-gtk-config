@@ -1,12 +1,14 @@
 Summary:	GTK2 and GTK3 configurator for KDE
 Name:		kde-gtk-config
-Version:	2.1.1
+Version:	2.2
 Release:	1
 License:	GPLv3
 Group:		Graphical desktop/KDE
 Url:		https://projects.kde.org/projects/playground/base/kde-gtk-config
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{name}/%{version}/src/%{name}-%{version}.tar.bz2
-Patch1:		kde-gtk-config-2.1-gtkrc-2.0-kde-config-file.patch
+# po files are missing in 2.2, get them from 2.2rc1
+Source1:	kde-gtk-config-2.2-po.tar.bz2
+Patch1:		kde-gtk-config-2.2-gtkrc-2.0-kde-config-file.patch
 
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
@@ -24,6 +26,7 @@ under KDE. Among its many features, it lets you:
 %prep
 %setup -q
 %patch1 -p1
+tar -xf %{SOURCE1}
 
 %build
 %cmake_kde4
@@ -36,14 +39,14 @@ under KDE. Among its many features, it lets you:
 
 %files -f %{name}.lang
 %doc README COPYING ChangeLog
-%{_kde_bindir}/gtk_preview
-%{_kde_bindir}/gtk3_preview
-%{_kde_bindir}/reload_gtk_apps
+%{_kde_libdir}/kde4/libexec/gtk_preview
+%{_kde_libdir}/kde4/libexec/gtk3_preview
+%{_kde_libdir}/kde4/libexec/reload_gtk_apps
 %{_kde_libdir}/kde4/kcm_cgc.so
 %{_kde_appsdir}/kcm-gtk-module/preview.ui
 %{_kde_configdir}/cgcgtk3.knsrc
 %{_kde_configdir}/cgcicon.knsrc
 %{_kde_configdir}/cgctheme.knsrc
-%{_kde_iconsdir}/hicolor/48x48/apps/gtkconfig.png
+%{_kde_iconsdir}/hicolor/48x48/apps/kde-gtk-config.png
 %{_kde_services}/kde-gtk-config.desktop
 
