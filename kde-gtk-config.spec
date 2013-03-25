@@ -1,13 +1,11 @@
 Summary:	GTK2 and GTK3 configurator for KDE
 Name:		kde-gtk-config
-Version:	2.2
+Version:	2.2.1
 Release:	1
 License:	GPLv3
 Group:		Graphical desktop/KDE
 Url:		https://projects.kde.org/projects/playground/base/kde-gtk-config
-Source0:	ftp://ftp.kde.org/pub/kde/stable/%{name}/%{version}/src/%{name}-%{version}.tar.bz2
-# po files are missing in 2.2, get them from 2.2rc1
-Source1:	kde-gtk-config-2.2-po.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/stable/%{name}/%{version}/src/%{name}-%{version}.tar.xz
 Patch1:		kde-gtk-config-2.2-gtkrc-2.0-kde-config-file.patch
 
 BuildRequires:	pkgconfig(gtk+-2.0)
@@ -26,7 +24,6 @@ under KDE. Among its many features, it lets you:
 %prep
 %setup -q
 %patch1 -p1
-tar -xf %{SOURCE1}
 
 %build
 %cmake_kde4
