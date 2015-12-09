@@ -1,16 +1,26 @@
 Summary:	GTK2 and GTK3 configurator for KDE
 Name:		kde-gtk-config
-Version:	2.2.1
-Release:	10
+Version:	5.5.0
+Release:	1
 License:	GPLv3
 Group:		Graphical desktop/KDE
 Url:		https://projects.kde.org/projects/playground/base/kde-gtk-config
-Source0:	ftp://ftp.kde.org/pub/kde/stable/%{name}/%{version}/src/%{name}-%{version}.tar.xz
-Patch1:		kde-gtk-config-2.2-gtkrc-2.0-kde-config-file.patch
+Source0:	ftp://ftp.kde.org/pub/kde/stable/%{name}/%{version}/src/%{name}-%{version}.tar.gz
 
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
-BuildRequires:	kdelibs4-devel
+BuildRequires:  cmake(ECM)
+BuildRequires:  cmake(KF5Archive)
+BuildRequires:  cmake(KF5ConfigWidgets)
+BuildRequires:  cmake(KF5KIO)
+BuildRequires:  cmake(KF5NewStuff)
+BuildRequires:	cmake(KF5I18n)
+BuildRequires:	cmake(KF5KCMUtils)
+BuildRequires:  cmake(KF5IconThemes)
+BuildRequires:  cmake(Qt5Test)
+BuildRequires:  cmake(Qt5Gui)
+BuildRequires:  cmake(Qt5Widgets)
+BuildRequires:  cmake(Qt5Core)
 
 %description
 Configuration dialog to adapt GTK applications appearance to your taste
@@ -23,27 +33,25 @@ under KDE. Among its many features, it lets you:
 
 %prep
 %setup -q
-%patch1 -p1
 
 %build
-%cmake_kde4
-%make
+export CC=gcc
+export CXX=g++
+%cmake_kde5
+%ninja
 
 %install
-%makeinstall_std -C build
+%ninja_install -C build
 
-%find_lang %{name}
-
-%files -f %{name}.lang
+%files
 %doc README COPYING ChangeLog
-%{_kde_libdir}/kde4/libexec/gtk_preview
-%{_kde_libdir}/kde4/libexec/gtk3_preview
-%{_kde_libdir}/kde4/libexec/reload_gtk_apps
-%{_kde_libdir}/kde4/kcm_cgc.so
-%{_kde_appsdir}/kcm-gtk-module/preview.ui
-%{_kde_configdir}/cgcgtk3.knsrc
-%{_kde_configdir}/cgcicon.knsrc
-%{_kde_configdir}/cgctheme.knsrc
-%{_kde_iconsdir}/hicolor/48x48/apps/kde-gtk-config.png
-%{_kde_services}/kde-gtk-config.desktop
-
+%{_kde5_libdir}/libexec/gtk_preview
+%{_kde5_libdir}/libexec/gtk3_preview
+%{_kde5_libdir}/libexec/reload_gtk_apps
+%{_kde5_datadir}/kcm-gtk-module/preview.ui
+%{_sysconfdir}/xdg/cgcgtk3.knsrc
+%{_sysconfdir}/xdg/cgcicon.knsrc
+%{_sysconfdir}/xdg/cgctheme.knsrc
+%{_kde5_iconsdir}/hicolor/*/apps/kde-gtk-config.*
+%{_kde5_services}/kde-gtk-config.desktop
+%{_libdir}/qt5/plugins/kcm_kdegtkconfig.so
