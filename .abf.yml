@@ -1,4 +1,2 @@
-removed_sources:
-  kde-gtk-config-2.2.1.tar.xz: f8886f94904d636d2ff7261b05bbb42ad22297c0
 sources:
-  kde-gtk-config-5.5.0.tar.gz: 370ae425b6a39692505ee1833fffe5a518561d9a
+  kde-gtk-config-5.5.2.tar.xz: b9228fbe70b35bf2be483022c468f6379d455dea
