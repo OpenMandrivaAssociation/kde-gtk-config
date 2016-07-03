@@ -2,7 +2,7 @@
 
 Summary:	GTK2 and GTK3 configurator for KDE
 Name:		kde-gtk-config
-Version:	5.6.5
+Version:	5.7.0
 Release:	1
 License:	GPLv2+
 Group:		System/Libraries
@@ -59,4 +59,4 @@ under KDE. Among its many features, it lets you:
 %install
 %ninja_install -C build
 
-%find_lang kde-gtk-config
+%find_lang kde-gtk-config || touch kde-gtk-config.lang
