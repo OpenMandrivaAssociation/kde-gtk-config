@@ -28,6 +28,7 @@ BuildRequires:	pkgconfig(Qt5Test)
 BuildRequires:	pkgconfig(Qt5Widgets)
 BuildRequires:	pkgconfig(pango)
 Requires:	kde-cli-tools
+Requires:	dconf
 %rename	kde-gtk-config5
 
 %description
