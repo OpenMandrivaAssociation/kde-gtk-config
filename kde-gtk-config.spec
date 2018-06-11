@@ -11,6 +11,8 @@ Source0:	http://download.kde.org/%{stable}/plasma/%{version}/%{name}-%{version}.
 Patch0:		kde-gtk-config-2.0-gtkrc-2.0-kde-config-file.patch
 BuildRequires:	cmake(ECM)
 BuildRequires:	cmake(KF5I18n)
+BuildRequires:	cmake(KF5IconThemes)
+BuildRequires:	cmake(KF5KIO)
 BuildRequires:	cmake(KF5ConfigWidgets)
 BuildRequires:	cmake(KF5NewStuff)
 BuildRequires:	cmake(KF5Archive)
