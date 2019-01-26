@@ -3,12 +3,14 @@
 Summary:	GTK2 and GTK3 configurator for KDE
 Name:		kde-gtk-config
 Version:	5.14.90
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://kde.org/
 Source0:	http://download.kde.org/%{stable}/plasma/%{version}/%{name}-%{version}.tar.xz
 Patch0:		kde-gtk-config-2.0-gtkrc-2.0-kde-config-file.patch
+# (crazy) we don't have any use of these , just bloat users installations
+Patch1:		no-dconf-and-friends-we-dont-need.patch
 BuildRequires:	cmake(ECM)
 BuildRequires:	cmake(KF5I18n)
 BuildRequires:	cmake(KF5IconThemes)
@@ -23,14 +25,12 @@ BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(glib-2.0)
-BuildRequires:	gsettings-desktop-schemas
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Gui)
 BuildRequires:	pkgconfig(Qt5Test)
 BuildRequires:	pkgconfig(Qt5Widgets)
 BuildRequires:	pkgconfig(pango)
 Requires:	kde-cli-tools
-Requires:	dconf
 %rename	kde-gtk-config5
 
 %description
