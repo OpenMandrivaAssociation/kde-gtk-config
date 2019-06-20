@@ -2,7 +2,7 @@
 
 Summary:	GTK2 and GTK3 configurator for KDE
 Name:		kde-gtk-config
-Version:	5.15.5
+Version:	5.16.1
 Release:	1
 License:	GPLv2+
 Group:		System/Libraries
@@ -44,9 +44,9 @@ under KDE. Among its many features, it lets you:
 - Easily browse and install new GTK2 and GTK3 themes.
 
 %files -f kde-gtk-config.lang
-%{_sysconfdir}/xdg/*
 %{_libdir}/libexec/*
 %{_libdir}/qt5/plugins/kcm_*.so
+%{_datadir}/knsrcfiles/*
 %{_datadir}/icons/*/*/*/kde-gtk-config.*
 %{_datadir}/kcm-gtk-module
 %{_datadir}/kservices5/*.desktop
