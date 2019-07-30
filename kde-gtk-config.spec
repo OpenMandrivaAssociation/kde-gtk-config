@@ -2,7 +2,7 @@
 
 Summary:	GTK2 and GTK3 configurator for KDE
 Name:		kde-gtk-config
-Version:	5.16.3
+Version:	5.16.4
 Release:	1
 License:	GPLv2+
 Group:		System/Libraries
@@ -11,6 +11,7 @@ Source0:	http://download.kde.org/%{stable}/plasma/%{version}/%{name}-%{version}.
 Patch0:		kde-gtk-config-2.0-gtkrc-2.0-kde-config-file.patch
 # (crazy) we don't have any use of these , just bloat users installations
 Patch1:		no-dconf-and-friends-we-dont-need.patch
+Patch2:		kde-gtk-config-5.16.4-buildfix.patch
 BuildRequires:	cmake(ECM)
 BuildRequires:	cmake(KF5I18n)
 BuildRequires:	cmake(KF5IconThemes)
