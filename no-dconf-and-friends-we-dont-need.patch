@@ -1,6 +1,6 @@
-diff -up kde-gtk-config-5.15.3/CMakeLists.txt.0001~ kde-gtk-config-5.15.3/CMakeLists.txt
---- kde-gtk-config-5.15.3/CMakeLists.txt.0001~	2019-03-12 17:41:25.786308729 +0100
-+++ kde-gtk-config-5.15.3/CMakeLists.txt	2019-03-12 17:45:21.250579340 +0100
+diff -up kde-gtk-config-5.16.5/CMakeLists.txt.0001~ kde-gtk-config-5.16.5/CMakeLists.txt
+--- kde-gtk-config-5.16.5/CMakeLists.txt.0001~	2019-09-03 15:44:30.000000000 +0200
++++ kde-gtk-config-5.16.5/CMakeLists.txt	2019-09-17 02:02:10.906950503 +0200
 @@ -8,14 +8,11 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_S
  find_package(Qt5 REQUIRED NO_MODULE COMPONENTS Widgets Svg Test)
  find_package(KF5 REQUIRED COMPONENTS I18n KIO ConfigWidgets NewStuff Archive KCMUtils IconThemes)
@@ -25,10 +25,9 @@ diff -up kde-gtk-config-5.15.3/CMakeLists.txt.0001~ kde-gtk-config-5.15.3/CMakeL
  
  kcoreaddons_desktop_to_json(kcm_kdegtkconfig kde-gtk-config.desktop)
  
-diff -up kde-gtk-config-5.15.3/cmake/modules/FindGSettingSchemas.cmake.0001~ kde-gtk-config-5.15.3/cmake/modules/FindGSettingSchemas.cmake
-diff -up kde-gtk-config-5.15.3/cmake/modules/FindGTK3.cmake.0001~ kde-gtk-config-5.15.3/cmake/modules/FindGTK3.cmake
---- kde-gtk-config-5.15.3/cmake/modules/FindGTK3.cmake.0001~	2019-03-12 10:52:51.000000000 +0100
-+++ kde-gtk-config-5.15.3/cmake/modules/FindGTK3.cmake	2019-03-12 17:41:25.786308729 +0100
+diff -up kde-gtk-config-5.16.5/cmake/modules/FindGTK3.cmake.0001~ kde-gtk-config-5.16.5/cmake/modules/FindGTK3.cmake
+--- kde-gtk-config-5.16.5/cmake/modules/FindGTK3.cmake.0001~	2019-09-03 15:44:16.000000000 +0200
++++ kde-gtk-config-5.16.5/cmake/modules/FindGTK3.cmake	2019-09-17 02:02:44.997721682 +0200
 @@ -35,7 +35,7 @@ FIND_PATH(
  	GLIB2_INCLUDE_DIR_PART1 glib.h
  	HINTS ${PC_GLIB2_INCLUDEDIR} ${PC_GLIB2_INCLUDE_DIRS}
@@ -78,18 +77,18 @@ diff -up kde-gtk-config-5.15.3/cmake/modules/FindGTK3.cmake.0001~ kde-gtk-config
  # pango
  #
  PKG_CHECK_MODULES(PC_PANGO REQUIRED pango)
-@@ -164,7 +140,7 @@ FIND_LIBRARY(
+@@ -182,7 +158,7 @@ FIND_LIBRARY(
  #
  #
- SET(GTK3_LIBRARY_DIRS ${GTK3_LIBRARY} ${GLIB2_LIBRARY} ${PANGO_LIBRARY} ${CAIRO_LIBRARY} ${GDKPIXBUF_LIBRARY} ${ATK_LIBRARY})
--SET(GTK3_INCLUDE_DIRS ${GTK3_INCLUDE_DIR} ${GLIB2_INCLUDE_DIR} ${GIO2_INCLUDE_DIR} ${PANGO_INCLUDE_DIR} ${CAIRO_INCLUDE_DIR} ${GDKPIXBUF_INCLUDE_DIR} ${ATK_INCLUDE_DIR})
-+SET(GTK3_INCLUDE_DIRS ${GTK3_INCLUDE_DIR} ${GLIB2_INCLUDE_DIR} ${PANGO_INCLUDE_DIR} ${CAIRO_INCLUDE_DIR} ${GDKPIXBUF_INCLUDE_DIR} ${ATK_INCLUDE_DIR})
+ SET(GTK3_LIBRARY_DIRS ${GTK3_LIBRARY} ${GLIB2_LIBRARY} ${PANGO_LIBRARY} ${HARFBUZZ_LIBRARY} ${CAIRO_LIBRARY} ${GDKPIXBUF_LIBRARY} ${ATK_LIBRARY})
+-SET(GTK3_INCLUDE_DIRS ${GTK3_INCLUDE_DIR} ${GLIB2_INCLUDE_DIR} ${GIO2_INCLUDE_DIR} ${HARFBUZZ_INCLUDE_DIR} ${PANGO_INCLUDE_DIR} ${CAIRO_INCLUDE_DIR} ${GDKPIXBUF_INCLUDE_DIR} ${ATK_INCLUDE_DIR})
++SET(GTK3_INCLUDE_DIRS ${GTK3_INCLUDE_DIR} ${GLIB2_INCLUDE_DIR} ${HARFBUZZ_INCLUDE_DIR} ${PANGO_INCLUDE_DIR} ${CAIRO_INCLUDE_DIR} ${GDKPIXBUF_INCLUDE_DIR} ${ATK_INCLUDE_DIR})
  
  INCLUDE(FindPackageHandleStandardArgs)
  
-diff -up kde-gtk-config-5.15.3/gtkproxies/CMakeLists.txt.0001~ kde-gtk-config-5.15.3/gtkproxies/CMakeLists.txt
---- kde-gtk-config-5.15.3/gtkproxies/CMakeLists.txt.0001~	2019-03-12 10:52:51.000000000 +0100
-+++ kde-gtk-config-5.15.3/gtkproxies/CMakeLists.txt	2019-03-12 17:41:25.786308729 +0100
+diff -up kde-gtk-config-5.16.5/gtkproxies/CMakeLists.txt.0001~ kde-gtk-config-5.16.5/gtkproxies/CMakeLists.txt
+--- kde-gtk-config-5.16.5/gtkproxies/CMakeLists.txt.0001~	2019-09-03 15:44:16.000000000 +0200
++++ kde-gtk-config-5.16.5/gtkproxies/CMakeLists.txt	2019-09-17 02:02:10.906950503 +0200
 @@ -1,6 +1,6 @@
  find_package(GTK2 REQUIRED)
  
@@ -98,9 +97,9 @@ diff -up kde-gtk-config-5.15.3/gtkproxies/CMakeLists.txt.0001~ kde-gtk-config-5.
  
  add_executable(reload_gtk_apps reload.c)
  target_link_libraries(reload_gtk_apps ${GTK2_LIBRARIES})
-diff -up kde-gtk-config-5.15.3/src/appearancegtk3.cpp.0001~ kde-gtk-config-5.15.3/src/appearancegtk3.cpp
---- kde-gtk-config-5.15.3/src/appearancegtk3.cpp.0001~	2019-03-12 10:52:51.000000000 +0100
-+++ kde-gtk-config-5.15.3/src/appearancegtk3.cpp	2019-03-12 17:41:25.786308729 +0100
+diff -up kde-gtk-config-5.16.5/src/appearancegtk3.cpp.0001~ kde-gtk-config-5.16.5/src/appearancegtk3.cpp
+--- kde-gtk-config-5.16.5/src/appearancegtk3.cpp.0001~	2019-09-03 15:44:16.000000000 +0200
++++ kde-gtk-config-5.16.5/src/appearancegtk3.cpp	2019-09-17 02:02:10.906950503 +0200
 @@ -1,5 +1,5 @@
  /* KDE GTK Configuration Module
 - *
@@ -180,9 +179,9 @@ diff -up kde-gtk-config-5.15.3/src/appearancegtk3.cpp.0001~ kde-gtk-config-5.15.
      auto cfg = KSharedConfig::openConfig(configFileName(), KConfig::NoGlobals);
      return saveSettings(cfg);
  }
-diff -up kde-gtk-config-5.15.3/tests/CMakeLists.txt.0001~ kde-gtk-config-5.15.3/tests/CMakeLists.txt
---- kde-gtk-config-5.15.3/tests/CMakeLists.txt.0001~	2019-03-12 10:52:51.000000000 +0100
-+++ kde-gtk-config-5.15.3/tests/CMakeLists.txt	2019-03-12 17:41:25.786308729 +0100
+diff -up kde-gtk-config-5.16.5/tests/CMakeLists.txt.0001~ kde-gtk-config-5.16.5/tests/CMakeLists.txt
+--- kde-gtk-config-5.16.5/tests/CMakeLists.txt.0001~	2019-09-03 15:44:16.000000000 +0200
++++ kde-gtk-config-5.16.5/tests/CMakeLists.txt	2019-09-17 02:02:10.906950503 +0200
 @@ -2,7 +2,7 @@ macro(add_kgc_test name)
      add_executable(${name} ${name}.cpp ${ARGV})
      add_test(${name} ${name})
