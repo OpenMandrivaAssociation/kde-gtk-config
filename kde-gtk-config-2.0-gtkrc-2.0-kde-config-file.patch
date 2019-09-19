@@ -1,29 +1,16 @@
-diff -Naur kde-gtk-config-5.5.3/src/appearancegtk2.cpp kde-gtk-config-5.5.3.tpg/src/appearancegtk2.cpp
---- kde-gtk-config-5.5.3/src/appearancegtk2.cpp	2016-01-06 12:00:16.000000000 +0000
-+++ kde-gtk-config-5.5.3.tpg/src/appearancegtk2.cpp	2016-01-16 04:53:20.753785611 +0000
-@@ -92,7 +92,7 @@
-     gtkrc.remove();
+diff -up kde-gtk-config-5.16.90/src/appearancegtk2.cpp.0000~ kde-gtk-config-5.16.90/src/appearancegtk2.cpp
+--- kde-gtk-config-5.16.90/src/appearancegtk2.cpp.0000~	2019-09-19 12:40:43.000000000 +0200
++++ kde-gtk-config-5.16.90/src/appearancegtk2.cpp	2019-09-19 20:29:51.045935082 +0200
+@@ -102,7 +102,7 @@ bool AppearanceGTK2::saveSettingsPrivate
  
-     if(!gtkrc.open(QIODevice::WriteOnly | QIODevice::Text)) {
--        qWarning() << "There was unable to write the file .gtkrc-2.0";
-+        qWarning() << "There was unable to write the file .gtkrc-2.0-kde";
+         return true;
+     } else {
+-        qWarning() << "There was unable to write the .gtkrc-2.0 file";
++        qWarning() << "There was unable to write the .gtkrc-2.0-kde file";
          return false;
      }
- 
-@@ -132,10 +132,10 @@
-     gtkrc.close();
-     
-     //TODO: do we really need the linked file?
--    if(QFile::remove(gtkrcFile+"-kde4"))
-+    if(QFile::remove(gtkrcFile+"4"))
-         qDebug() << "ready to create the symbolic link";
-     
--    if( !QFile::link(gtkrcFile, gtkrcFile+"-kde4") )
-+    if( !QFile::link(gtkrcFile, gtkrcFile+"4") )
-         qWarning() << "Couldn't create the symboling link to .gtkrc-2.0-kde4 :(";
- //     else
- //         qDebug() << "Symbolic link created for .gtkrc-2.0-kde4 :D";
-@@ -148,7 +148,7 @@
+ }
+@@ -157,7 +157,7 @@ void AppearanceGTK2::reset()
  
  QString AppearanceGTK2::defaultConfigFile() const
  {
@@ -32,9 +19,9 @@ diff -Naur kde-gtk-config-5.5.3/src/appearancegtk2.cpp kde-gtk-config-5.5.3.tpg/
  }
  
  QStringList AppearanceGTK2::installedThemes() const
-diff -Naur kde-gtk-config-5.5.3/src/appearencegtk.h kde-gtk-config-5.5.3.tpg/src/appearencegtk.h
---- kde-gtk-config-5.5.3/src/appearencegtk.h	2016-01-06 12:00:16.000000000 +0000
-+++ kde-gtk-config-5.5.3.tpg/src/appearencegtk.h	2016-01-16 04:49:12.840232040 +0000
+diff -up kde-gtk-config-5.16.90/src/appearencegtk.h.0000~ kde-gtk-config-5.16.90/src/appearencegtk.h
+--- kde-gtk-config-5.16.90/src/appearencegtk.h.0000~	2019-09-19 12:40:43.000000000 +0200
++++ kde-gtk-config-5.16.90/src/appearencegtk.h	2019-09-19 20:28:10.465161930 +0200
 @@ -30,7 +30,7 @@
  class AbstractAppearance;
  /**
