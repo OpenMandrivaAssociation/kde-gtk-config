@@ -2,16 +2,13 @@
 
 Summary:	GTK2 and GTK3 configurator for KDE
 Name:		kde-gtk-config
-Version:	5.17.5
-Release:	2
+Version:	5.18.0
+Release:	1
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://kde.org/
 Source0:	http://download.kde.org/%{stable}/plasma/%{version}/%{name}-%{version}.tar.xz
 Patch0:		kde-gtk-config-2.0-gtkrc-2.0-kde-config-file.patch
-# (crazy) we don't have any use of these , just bloat users installations
-Patch1:		no-dconf-and-friends-we-dont-need.patch
-Patch2:		kde-gtk-config-5.16.4-buildfix.patch
 BuildRequires:	cmake(ECM)
 BuildRequires:	cmake(KF5I18n)
 BuildRequires:	cmake(KF5IconThemes)
@@ -44,13 +41,12 @@ under KDE. Among its many features, it lets you:
 - Select GTK applications default fonts.
 - Easily browse and install new GTK2 and GTK3 themes.
 
-%files -f kde-gtk-config.lang
+%files
 %{_libdir}/libexec/*
-%{_libdir}/qt5/plugins/kcm_*.so
-%{_datadir}/knsrcfiles/*
-%{_datadir}/icons/*/*/*/kde-gtk-config.*
 %{_datadir}/kcm-gtk-module
-%{_datadir}/kservices5/*.desktop
+%{_libdir}/kconf_update_bin/gtk_theme
+%{_libdir}/qt5/plugins/kf5/kded/gtkconfig.so
+%{_datadir}/kconf_update/gtkconfig.upd
 
 #----------------------------------------------------------------------------
 
@@ -63,5 +59,3 @@ under KDE. Among its many features, it lets you:
 
 %install
 %ninja_install -C build
-
-%find_lang kde-gtk-config || touch kde-gtk-config.lang

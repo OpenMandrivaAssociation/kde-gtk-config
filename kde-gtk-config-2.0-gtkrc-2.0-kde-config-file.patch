@@ -1,33 +1,47 @@
-diff -up kde-gtk-config-5.16.90/src/appearancegtk2.cpp.0000~ kde-gtk-config-5.16.90/src/appearancegtk2.cpp
---- kde-gtk-config-5.16.90/src/appearancegtk2.cpp.0000~	2019-09-19 12:40:43.000000000 +0200
-+++ kde-gtk-config-5.16.90/src/appearancegtk2.cpp	2019-09-19 20:29:51.045935082 +0200
-@@ -102,7 +102,7 @@ bool AppearanceGTK2::saveSettingsPrivate
+diff -up kde-gtk-config-5.18.0/kded/configeditor.cpp.omv~ kde-gtk-config-5.18.0/kded/configeditor.cpp
+--- kde-gtk-config-5.18.0/kded/configeditor.cpp.omv~	2020-02-08 23:58:27.318415353 +0100
++++ kde-gtk-config-5.18.0/kded/configeditor.cpp	2020-02-08 23:58:41.334415971 +0100
+@@ -82,9 +82,9 @@ void ConfigEditor::setGtk3ConfigValueXSe
  
-         return true;
-     } else {
--        qWarning() << "There was unable to write the .gtkrc-2.0 file";
-+        qWarning() << "There was unable to write the .gtkrc-2.0-kde file";
-         return false;
+ void ConfigEditor::setGtk2ConfigValue(const QString &paramName, const QString &paramValue)
+ {
+-    QString gtkrcPath = qEnvironmentVariable("GTK2_RC_FILES", QDir::homePath() + QStringLiteral("/.gtkrc-2.0"));
++    QString gtkrcPath = qEnvironmentVariable("GTK2_RC_FILES", QDir::homePath() + QStringLiteral("/.gtkrc-2.0-kde"));
+     if (gtkrcPath.contains(QStringLiteral(":/"))) { // I.e. env variable contains multiple paths
+-        gtkrcPath = QDir::homePath() + QStringLiteral("/.gtkrc-2.0");
++        gtkrcPath = QDir::homePath() + QStringLiteral("/.gtkrc-2.0-kde");
      }
- }
-@@ -157,7 +157,7 @@ void AppearanceGTK2::reset()
+     QFile gtkrc(gtkrcPath);
+     QString gtkrcContents = readFileContents(gtkrc);
+@@ -97,7 +97,7 @@ void ConfigEditor::setGtk2ConfigValue(co
  
- QString AppearanceGTK2::defaultConfigFile() const
+ QString ConfigEditor::gtk2ConfigValue(const QString& paramName)
  {
--    return QDir::homePath()+"/.gtkrc-2.0";
-+    return QDir::homePath()+"/.gtkrc-2.0-kde";
- }
+-    QString gtkrcPath = QDir::homePath() + QStringLiteral("/.gtkrc-2.0");
++    QString gtkrcPath = QDir::homePath() + QStringLiteral("/.gtkrc-2.0-kde");
+     QFile gtkrc(gtkrcPath);
+     if (gtkrc.open(QIODevice::ReadWrite | QIODevice::Text)) {
+         const QRegularExpression regExp(paramName + QStringLiteral("=[^\n]*($|\n)"));
+@@ -126,7 +126,7 @@ QString ConfigEditor::gtk3ConfigValueSet
  
- QStringList AppearanceGTK2::installedThemes() const
-diff -up kde-gtk-config-5.16.90/src/appearencegtk.h.0000~ kde-gtk-config-5.16.90/src/appearencegtk.h
---- kde-gtk-config-5.16.90/src/appearencegtk.h.0000~	2019-09-19 12:40:43.000000000 +0200
-+++ kde-gtk-config-5.16.90/src/appearencegtk.h	2019-09-19 20:28:10.465161930 +0200
-@@ -30,7 +30,7 @@
- class AbstractAppearance;
- /**
-  * This class is responsible of administrating the GTK themes. It loads the 
-- * configurations from the .gtkrc-2.0 file.
-+ * configurations from the .gtkrc-2.0-kde file.
-  */
- class AppearenceGTK
+ void ConfigEditor::removeLegacyGtk2Strings()
  {
+-    QString gtkrcPath = QDir::homePath() + QStringLiteral("/.gtkrc-2.0");
++    QString gtkrcPath = QDir::homePath() + QStringLiteral("/.gtkrc-2.0-kde");
+     QFile gtkrc(gtkrcPath);
+     QString gtkrcContents = readFileContents(gtkrc);
+ 
+diff -up kde-gtk-config-5.18.0/kded/themepreviewer.cpp.omv~ kde-gtk-config-5.18.0/kded/themepreviewer.cpp
+--- kde-gtk-config-5.18.0/kded/themepreviewer.cpp.omv~	2020-02-08 23:58:46.384416193 +0100
++++ kde-gtk-config-5.18.0/kded/themepreviewer.cpp	2020-02-08 23:58:54.167416536 +0100
+@@ -36,8 +36,8 @@
+ #include "configeditor.h"
+ #include "config.h"
+ 
+-const QString ThemePreviewer::previewGtk2ConfigPath = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + QStringLiteral("/gtkrc-2.0");
+-const QString ThemePreviewer::currentGtk2ConfigPath = QDir::homePath() + QStringLiteral("/.gtkrc-2.0");
++const QString ThemePreviewer::previewGtk2ConfigPath = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + QStringLiteral("/gtkrc-2.0-kde");
++const QString ThemePreviewer::currentGtk2ConfigPath = QDir::homePath() + QStringLiteral("/.gtkrc-2.0-kde");
+ const QString ThemePreviewer::gtk2PreviewerExecutablePath = QStandardPaths::findExecutable(QStringLiteral("gtk_preview"), {CMAKE_INSTALL_FULL_LIBEXECDIR});
+ 
+ const QString ThemePreviewer::gtk3PreviewerExecutablePath = QStandardPaths::findExecutable(QStringLiteral("gtk3_preview"), {CMAKE_INSTALL_FULL_LIBEXECDIR});
