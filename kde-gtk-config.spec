@@ -30,7 +30,7 @@ BuildRequires:	pkgconfig(Qt5Svg)
 BuildRequires:	pkgconfig(Qt5Test)
 BuildRequires:	pkgconfig(Qt5Widgets)
 BuildRequires:	pkgconfig(pango)
-BuildRequires:	pkgconfig(gsettings-desktop-schemas)
+BuildRequires:	gsettings-desktop-schemas pkgconfig(gsettings-desktop-schemas)
 Requires:	kde-cli-tools
 %rename	kde-gtk-config5
 
