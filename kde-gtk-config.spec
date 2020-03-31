@@ -2,12 +2,12 @@
 
 Summary:	GTK2 and GTK3 configurator for KDE
 Name:		kde-gtk-config
-Version:	5.18.3
-Release:	2
+Version:	5.18.4.1
+Release:	1
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://kde.org/
-Source0:	http://download.kde.org/%{stable}/plasma/%{version}/%{name}-%{version}.tar.xz
+Source0:	http://download.kde.org/%{stable}/plasma/%(echo %{version} |cut -d. -f1-3)/%{name}-%{version}.tar.xz
 Patch0:		kde-gtk-config-2.0-gtkrc-2.0-kde-config-file.patch
 BuildRequires:	cmake(ECM)
 BuildRequires:	cmake(KF5I18n)
