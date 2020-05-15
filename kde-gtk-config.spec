@@ -2,7 +2,7 @@
 
 Summary:	GTK2 and GTK3 configurator for KDE
 Name:		kde-gtk-config
-Version:	5.18.5
+Version:	5.18.90
 Release:	1
 License:	GPLv2+
 Group:		System/Libraries
@@ -49,6 +49,7 @@ under KDE. Among its many features, it lets you:
 %{_libdir}/kconf_update_bin/gtk_theme
 %{_libdir}/qt5/plugins/kf5/kded/gtkconfig.so
 %{_datadir}/kconf_update/gtkconfig.upd
+%{_libdir}/gtk-3.0/modules/libcolorreload-gtk-module.so
 
 #----------------------------------------------------------------------------
 

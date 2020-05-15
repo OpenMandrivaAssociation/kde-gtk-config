@@ -1,9 +1,9 @@
-diff -up kde-gtk-config-5.18.0/kded/configeditor.cpp.omv~ kde-gtk-config-5.18.0/kded/configeditor.cpp
---- kde-gtk-config-5.18.0/kded/configeditor.cpp.omv~	2020-02-08 23:58:27.318415353 +0100
-+++ kde-gtk-config-5.18.0/kded/configeditor.cpp	2020-02-08 23:58:41.334415971 +0100
-@@ -82,9 +82,9 @@ void ConfigEditor::setGtk3ConfigValueXSe
+diff -up kde-gtk-config-5.18.90/kded/configeditor.cpp.1~ kde-gtk-config-5.18.90/kded/configeditor.cpp
+--- kde-gtk-config-5.18.90/kded/configeditor.cpp.1~	2020-05-14 12:33:29.000000000 +0200
++++ kde-gtk-config-5.18.90/kded/configeditor.cpp	2020-05-15 16:09:02.617268047 +0200
+@@ -94,9 +94,9 @@ void ConfigEditor::setGtk3ConfigValueXSe
  
- void ConfigEditor::setGtk2ConfigValue(const QString &paramName, const QString &paramValue)
+ void ConfigEditor::setGtk2ConfigValue(const QString &paramName, const QVariant &paramValue)
  {
 -    QString gtkrcPath = qEnvironmentVariable("GTK2_RC_FILES", QDir::homePath() + QStringLiteral("/.gtkrc-2.0"));
 +    QString gtkrcPath = qEnvironmentVariable("GTK2_RC_FILES", QDir::homePath() + QStringLiteral("/.gtkrc-2.0-kde"));
@@ -13,7 +13,7 @@ diff -up kde-gtk-config-5.18.0/kded/configeditor.cpp.omv~ kde-gtk-config-5.18.0/
      }
      QFile gtkrc(gtkrcPath);
      QString gtkrcContents = readFileContents(gtkrc);
-@@ -97,7 +97,7 @@ void ConfigEditor::setGtk2ConfigValue(co
+@@ -117,7 +117,7 @@ void ConfigEditor::setGtk3Colors(const Q
  
  QString ConfigEditor::gtk2ConfigValue(const QString& paramName)
  {
@@ -22,7 +22,7 @@ diff -up kde-gtk-config-5.18.0/kded/configeditor.cpp.omv~ kde-gtk-config-5.18.0/
      QFile gtkrc(gtkrcPath);
      if (gtkrc.open(QIODevice::ReadWrite | QIODevice::Text)) {
          const QRegularExpression regExp(paramName + QStringLiteral("=[^\n]*($|\n)"));
-@@ -126,7 +126,7 @@ QString ConfigEditor::gtk3ConfigValueSet
+@@ -146,7 +146,7 @@ QString ConfigEditor::gtk3ConfigValueSet
  
  void ConfigEditor::removeLegacyGtk2Strings()
  {
@@ -31,9 +31,9 @@ diff -up kde-gtk-config-5.18.0/kded/configeditor.cpp.omv~ kde-gtk-config-5.18.0/
      QFile gtkrc(gtkrcPath);
      QString gtkrcContents = readFileContents(gtkrc);
  
-diff -up kde-gtk-config-5.18.0/kded/themepreviewer.cpp.omv~ kde-gtk-config-5.18.0/kded/themepreviewer.cpp
---- kde-gtk-config-5.18.0/kded/themepreviewer.cpp.omv~	2020-02-08 23:58:46.384416193 +0100
-+++ kde-gtk-config-5.18.0/kded/themepreviewer.cpp	2020-02-08 23:58:54.167416536 +0100
+diff -up kde-gtk-config-5.18.90/kded/themepreviewer.cpp.1~ kde-gtk-config-5.18.90/kded/themepreviewer.cpp
+--- kde-gtk-config-5.18.90/kded/themepreviewer.cpp.1~	2020-05-14 12:33:29.000000000 +0200
++++ kde-gtk-config-5.18.90/kded/themepreviewer.cpp	2020-05-15 04:49:39.132200274 +0200
 @@ -36,8 +36,8 @@
  #include "configeditor.h"
  #include "config.h"
