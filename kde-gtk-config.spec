@@ -3,7 +3,7 @@
 Summary:	GTK2 and GTK3 configurator for KDE
 Name:		kde-gtk-config
 Version:	5.18.90
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://kde.org/
@@ -30,8 +30,11 @@ BuildRequires:	pkgconfig(Qt5Svg)
 BuildRequires:	pkgconfig(Qt5Test)
 BuildRequires:	pkgconfig(Qt5Widgets)
 BuildRequires:	pkgconfig(pango)
-BuildRequires:	gsettings-desktop-schemas pkgconfig(gsettings-desktop-schemas)
+BuildRequires:	gsettings-desktop-schemas
+BuildRequires:	pkgconfig(gsettings-desktop-schemas)
+BuildRequires:	xsettingsd
 Requires:	kde-cli-tools
+Requires:	xsettingsd
 %rename	kde-gtk-config5
 
 %description
