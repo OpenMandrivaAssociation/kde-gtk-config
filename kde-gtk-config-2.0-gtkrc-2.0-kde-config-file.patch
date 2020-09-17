@@ -1,7 +1,7 @@
-diff -up kde-gtk-config-5.18.90/kded/configeditor.cpp.1~ kde-gtk-config-5.18.90/kded/configeditor.cpp
---- kde-gtk-config-5.18.90/kded/configeditor.cpp.1~	2020-05-14 12:33:29.000000000 +0200
-+++ kde-gtk-config-5.18.90/kded/configeditor.cpp	2020-05-15 16:09:02.617268047 +0200
-@@ -94,9 +94,9 @@ void ConfigEditor::setGtk3ConfigValueXSe
+diff -up kde-gtk-config-5.19.90/kded/configeditor.cpp.1~ kde-gtk-config-5.19.90/kded/configeditor.cpp
+--- kde-gtk-config-5.19.90/kded/configeditor.cpp.1~	2020-09-17 12:50:36.000000000 +0200
++++ kde-gtk-config-5.19.90/kded/configeditor.cpp	2020-09-17 17:42:35.782509016 +0200
+@@ -80,9 +80,9 @@ void ConfigEditor::setGtk3ConfigValueXSe
  
  void ConfigEditor::setGtk2ConfigValue(const QString &paramName, const QVariant &paramValue)
  {
@@ -13,16 +13,7 @@ diff -up kde-gtk-config-5.18.90/kded/configeditor.cpp.1~ kde-gtk-config-5.18.90/
      }
      QFile gtkrc(gtkrcPath);
      QString gtkrcContents = readFileContents(gtkrc);
-@@ -117,7 +117,7 @@ void ConfigEditor::setGtk3Colors(const Q
- 
- QString ConfigEditor::gtk2ConfigValue(const QString& paramName)
- {
--    QString gtkrcPath = QDir::homePath() + QStringLiteral("/.gtkrc-2.0");
-+    QString gtkrcPath = QDir::homePath() + QStringLiteral("/.gtkrc-2.0-kde");
-     QFile gtkrc(gtkrcPath);
-     if (gtkrc.open(QIODevice::ReadWrite | QIODevice::Text)) {
-         const QRegularExpression regExp(paramName + QStringLiteral("=[^\n]*($|\n)"));
-@@ -146,7 +146,7 @@ QString ConfigEditor::gtk3ConfigValueSet
+@@ -126,7 +126,7 @@ QString ConfigEditor::gtk3ConfigValueSet
  
  void ConfigEditor::removeLegacyGtk2Strings()
  {
@@ -31,17 +22,4 @@ diff -up kde-gtk-config-5.18.90/kded/configeditor.cpp.1~ kde-gtk-config-5.18.90/
      QFile gtkrc(gtkrcPath);
      QString gtkrcContents = readFileContents(gtkrc);
  
-diff -up kde-gtk-config-5.18.90/kded/themepreviewer.cpp.1~ kde-gtk-config-5.18.90/kded/themepreviewer.cpp
---- kde-gtk-config-5.18.90/kded/themepreviewer.cpp.1~	2020-05-14 12:33:29.000000000 +0200
-+++ kde-gtk-config-5.18.90/kded/themepreviewer.cpp	2020-05-15 04:49:39.132200274 +0200
-@@ -36,8 +36,8 @@
- #include "configeditor.h"
- #include "config.h"
- 
--const QString ThemePreviewer::previewGtk2ConfigPath = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + QStringLiteral("/gtkrc-2.0");
--const QString ThemePreviewer::currentGtk2ConfigPath = QDir::homePath() + QStringLiteral("/.gtkrc-2.0");
-+const QString ThemePreviewer::previewGtk2ConfigPath = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + QStringLiteral("/gtkrc-2.0-kde");
-+const QString ThemePreviewer::currentGtk2ConfigPath = QDir::homePath() + QStringLiteral("/.gtkrc-2.0-kde");
- const QString ThemePreviewer::gtk2PreviewerExecutablePath = QStandardPaths::findExecutable(QStringLiteral("gtk_preview"), {CMAKE_INSTALL_FULL_LIBEXECDIR});
- 
- const QString ThemePreviewer::gtk3PreviewerExecutablePath = QStandardPaths::findExecutable(QStringLiteral("gtk3_preview"), {CMAKE_INSTALL_FULL_LIBEXECDIR});
+diff -up kde-gtk-config-5.19.90/kded/themepreviewer.cpp.1~ kde-gtk-config-5.19.90/kded/themepreviewer.cpp
