@@ -34,6 +34,7 @@ BuildRequires:	pkgconfig(pango)
 BuildRequires:	gsettings-desktop-schemas
 BuildRequires:	pkgconfig(gsettings-desktop-schemas)
 BuildRequires:	xsettingsd
+BuildRequires:	sassc
 Requires:	kde-cli-tools
 Requires:	xsettingsd
 %rename	kde-gtk-config5
