@@ -2,8 +2,8 @@
 
 Summary:	GTK2 and GTK3 configurator for KDE
 Name:		kde-gtk-config
-Version:	5.23.5
-Release:	2
+Version:	5.24.0
+Release:	1
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://kde.org/
@@ -58,6 +58,7 @@ under KDE. Among its many features, it lets you:
 %{_datadir}/themes/Breeze/window_decorations.css
 %{_datadir}/kconf_update/remove_window_decorations_from_gtk_css.sh
 %{_datadir}/kcm-gtk-module/preview.ui
+%{_libdir}/kconf_update_bin/remove_deprecated_gtk4_option
 
 #----------------------------------------------------------------------------
 
