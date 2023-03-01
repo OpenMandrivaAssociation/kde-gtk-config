@@ -1,6 +1,6 @@
-diff -up kde-gtk-config-5.27.0/kconf_update/gtktheme.cpp.omv~ kde-gtk-config-5.27.0/kconf_update/gtktheme.cpp
---- kde-gtk-config-5.27.0/kconf_update/gtktheme.cpp.omv~	2023-02-14 15:47:07.158357146 +0100
-+++ kde-gtk-config-5.27.0/kconf_update/gtktheme.cpp	2023-02-14 15:47:09.716401028 +0100
+diff -up kde-gtk-config-5.27.2/kconf_update/gtktheme.cpp.1~ kde-gtk-config-5.27.2/kconf_update/gtktheme.cpp
+--- kde-gtk-config-5.27.2/kconf_update/gtktheme.cpp.1~	2023-02-28 13:17:06.000000000 +0100
++++ kde-gtk-config-5.27.2/kconf_update/gtktheme.cpp	2023-03-01 01:37:19.653143471 +0100
 @@ -51,7 +51,7 @@ void upgradeGtk3Theme()
  
  QString gtk2Theme()
@@ -10,9 +10,9 @@ diff -up kde-gtk-config-5.27.0/kconf_update/gtktheme.cpp.omv~ kde-gtk-config-5.2
      QFile gtkrc(gtkrcPath);
      if (gtkrc.open(QIODevice::ReadWrite | QIODevice::Text)) {
          const QRegularExpression regExp(QStringLiteral("gtk-theme-name=[^\n]*($|\n)"));
-diff -up kde-gtk-config-5.27.0/kded/config_editor/gtk2.cpp.omv~ kde-gtk-config-5.27.0/kded/config_editor/gtk2.cpp
---- kde-gtk-config-5.27.0/kded/config_editor/gtk2.cpp.omv~	2023-02-14 15:46:41.555811584 +0100
-+++ kde-gtk-config-5.27.0/kded/config_editor/gtk2.cpp	2023-02-14 15:46:51.938058354 +0100
+diff -up kde-gtk-config-5.27.2/kded/config_editor/gtk2.cpp.1~ kde-gtk-config-5.27.2/kded/config_editor/gtk2.cpp
+--- kde-gtk-config-5.27.2/kded/config_editor/gtk2.cpp.1~	2023-02-28 13:17:06.000000000 +0100
++++ kde-gtk-config-5.27.2/kded/config_editor/gtk2.cpp	2023-03-01 01:37:48.232320179 +0100
 @@ -37,9 +37,9 @@ void replaceValueInGtkrcContents(QString
  
  void setValue(const QString &paramName, const QVariant &paramValue)
@@ -33,4 +33,4 @@ diff -up kde-gtk-config-5.27.0/kded/config_editor/gtk2.cpp.omv~ kde-gtk-config-5
 +    QString gtkrcPath = QDir::homePath() + QStringLiteral("/.gtkrc-2.0-kde");
      QFile gtkrc(gtkrcPath);
      QString gtkrcContents = Utils::readFileContents(gtkrc);
- 
+     if (gtkrcContents.isNull()) {
