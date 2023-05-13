@@ -2,7 +2,7 @@
 
 Summary:	GTK2 and GTK3 configurator for KDE
 Name:		kde-gtk-config
-Version:	5.27.4
+Version:	5.27.5
 Release:	1
 License:	GPLv2+
 Group:		System/Libraries
