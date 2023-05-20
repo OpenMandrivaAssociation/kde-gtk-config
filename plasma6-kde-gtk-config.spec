@@ -22,7 +22,7 @@ BuildRequires:	cmake(KF6NewStuff)
 BuildRequires:	cmake(KF6Archive)
 BuildRequires:	cmake(KF6KCMUtils)
 BuildRequires:	cmake(KF6DBusAddons)
-BuildRequires:	cmake(KDecoration2)
+BuildRequires:	cmake(KDecoration2) >= 5.27.80
 BuildRequires:	pkgconfig(atk)
 BuildRequires:	pkgconfig(cairo)
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
