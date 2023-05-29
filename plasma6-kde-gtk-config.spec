@@ -4,7 +4,7 @@
 Summary:	GTK2 and GTK3 configurator for KDE
 Name:		plasma6-kde-gtk-config
 Version:	5.240.0
-Release:	%{?git:0.%{git}.}1
+Release:	%{?git:0.%{git}.}2
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://kde.org/
@@ -40,7 +40,7 @@ BuildRequires:	gsettings-desktop-schemas
 BuildRequires:	pkgconfig(gsettings-desktop-schemas)
 BuildRequires:	xsettingsd
 BuildRequires:	sassc
-Requires:	kde-cli-tools
+Requires:	plasma6-kde-cli-tools
 Requires:	xsettingsd
 
 %description
