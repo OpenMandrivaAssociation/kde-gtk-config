@@ -1,10 +1,10 @@
 %define stable %([ "`echo %{version} |cut -d. -f3`" -ge 80 ] && echo -n un; echo -n stable)
-%define git 20230527
+%define git 20230606
 
 Summary:	GTK2 and GTK3 configurator for KDE
 Name:		plasma6-kde-gtk-config
 Version:	5.240.0
-Release:	%{?git:0.%{git}.}2
+Release:	%{?git:0.%{git}.}1
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://kde.org/
