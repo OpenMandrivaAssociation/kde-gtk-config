@@ -18,7 +18,7 @@ BuildRequires:	cmake(KF5NewStuff)
 BuildRequires:	cmake(KF5Archive)
 BuildRequires:	cmake(KF5KCMUtils)
 BuildRequires:	cmake(KF5DBusAddons)
-BuildRequires:	cmake(KDecoration2) < 5.100.0
+BuildRequires:	cmake(KDecoration2) < 5.27.80
 BuildRequires:	pkgconfig(atk)
 BuildRequires:	pkgconfig(cairo)
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
