@@ -40,6 +40,8 @@ BuildRequires:	gsettings-desktop-schemas
 BuildRequires:	pkgconfig(gsettings-desktop-schemas)
 BuildRequires:	xsettingsd
 BuildRequires:	sassc
+# More like BuildConflicts: xdg-desktop-portal-kde (5)
+BuildRequires: plasma6-xdg-desktop-portal-kde
 Requires:	plasma6-kde-cli-tools
 Requires:	xsettingsd
 
