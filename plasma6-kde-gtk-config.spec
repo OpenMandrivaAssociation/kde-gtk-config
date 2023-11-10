@@ -1,9 +1,10 @@
-%define stable %([ "`echo %{version} |cut -d. -f3`" -ge 80 ] && echo -n un; echo -n stable)
-%define git 20231103
+%define stable %([ "$(echo %{version} |cut -d. -f2)" -ge 80 -o "$(echo %{version} |cut -d. -f3)" -ge 80 ] && echo -n un; echo -n stable)
+
+#define git 20231103
 
 Summary:	GTK2 and GTK3 configurator for KDE
 Name:		plasma6-kde-gtk-config
-Version:	5.240.0
+Version:	5.27.80
 Release:	%{?git:0.%{git}.}1
 License:	GPLv2+
 Group:		System/Libraries
@@ -11,7 +12,7 @@ Url:		http://kde.org/
 %if 0%{?git:1}
 Source0:	https://invent.kde.org/plasma/kde-gtk-config/-/archive/master/kde-gtk-config-master.tar.bz2#/kde-gtk-config-%{git}.tar.bz2
 %else
-Source0:	http://download.kde.org/%{stable}/plasma/%(echo %{version} |cut -d. -f1-3)/%{name}-%{version}.tar.xz
+Source0:	http://download.kde.org/%{stable}/plasma/%(echo %{version} |cut -d. -f1-3)/kde-gtk-config-%{version}.tar.xz
 %endif
 BuildRequires:	cmake(ECM)
 BuildRequires:	cmake(KF6I18n)
