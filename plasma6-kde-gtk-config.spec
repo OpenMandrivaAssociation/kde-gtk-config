@@ -7,7 +7,7 @@
 Summary:	GTK2 and GTK3 configurator for KDE
 Name:		plasma6-kde-gtk-config
 Version:	6.0.2
-Release:	%{?git:0.%{git}.}1
+Release:	%{?git:0.%{git}.}2
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://kde.org/
