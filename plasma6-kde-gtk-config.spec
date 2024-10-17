@@ -10,7 +10,7 @@ Version:	6.2.1
 Release:	%{?git:0.%{git}.}1
 License:	GPLv2+
 Group:		System/Libraries
-Url:		http://kde.org/
+Url:		https://kde.org/
 %if 0%{?git:1}
 Source0:	https://invent.kde.org/plasma/kde-gtk-config/-/archive/%{gitbranch}/kde-gtk-config-%{gitbranchd}.tar.bz2#/kde-gtk-config-%{git}.tar.bz2
 %else
