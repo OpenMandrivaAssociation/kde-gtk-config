@@ -6,7 +6,7 @@
 
 Summary:	GTK2 and GTK3 configurator for KDE
 Name:		plasma6-kde-gtk-config
-Version:	6.2.5
+Version:	6.3.0
 Release:	%{?git:0.%{git}.}1
 License:	GPLv2+
 Group:		System/Libraries
@@ -25,7 +25,7 @@ BuildRequires:	cmake(KF6NewStuff)
 BuildRequires:	cmake(KF6Archive)
 BuildRequires:	cmake(KF6KCMUtils)
 BuildRequires:	cmake(KF6DBusAddons)
-BuildRequires:	cmake(KDecoration2) >= 5.27.80
+BuildRequires:	cmake(KDecoration3)
 BuildRequires:	pkgconfig(atk)
 BuildRequires:	pkgconfig(cairo)
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
