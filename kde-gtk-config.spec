@@ -5,9 +5,9 @@
 %define gitbranchd %(echo %{gitbranch} |sed -e "s,/,-,g")
 
 Summary:	GTK2 and GTK3 configurator for KDE
-Name:		plasma6-kde-gtk-config
+Name:		kde-gtk-config
 Version:	6.3.4
-Release:	%{?git:0.%{git}.}2
+Release:	%{?git:0.%{git}.}3
 License:	GPLv2+
 Group:		System/Libraries
 Url:		https://kde.org/
@@ -45,6 +45,11 @@ BuildRequires:	xsettingsd
 BuildRequires:	sassc
 Requires:	plasma6-kde-cli-tools
 Requires:	xsettingsd
+BuildSystem:	cmake
+BuildOption:	-DBUILD_QCH:BOOL=ON
+BuildOption:	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON
+# Renamed after 6.0 2026-05-01
+%rename plasma6-kde-gtk-config
 
 %description
 Configuration dialog to adapt GTK applications appearance to your taste
@@ -67,19 +72,3 @@ under KDE. Among its many features, it lets you:
 %{_datadir}/kcm-gtk-module/preview.ui
 %{_datadir}/qlogging-categories6/kde-gtk-config.categories
 %{_libdir}/kconf_update_bin/remove_deprecated_gtk4_option
-
-#----------------------------------------------------------------------------
-
-%prep
-%autosetup -p1 -n kde-gtk-config-%{?git:%{gitbranchd}}%{!?git:%{version}}
-%cmake \
-	-DBUILD_QCH:BOOL=ON \
-	-DBUILD_WITH_QT6:BOOL=ON \
-	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON \
-	-G Ninja
-
-%build
-%ninja_build -C build
-
-%install
-%ninja_install -C build
