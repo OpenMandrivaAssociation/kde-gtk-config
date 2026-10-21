@@ -7,7 +7,7 @@
 Summary:	GTK2 and GTK3 configurator for KDE
 Name:		kde-gtk-config
 Version:	6.8.1
-Release:	%{?git:0.%{git}.}1
+Release:	%{?git:0.%{git}.}2
 License:	GPLv2+
 Group:		System/Libraries
 Url:		https://kde.org/
@@ -16,6 +16,8 @@ Source0:	https://invent.kde.org/plasma/kde-gtk-config/-/archive/%{gitbranch}/kde
 %else
 Source0:	http://download.kde.org/%{stable}/plasma/%(echo %{version} |cut -d. -f1-3)/kde-gtk-config-%{version}.tar.xz
 %endif
+# Honor kcmfonts forceFontDPI on X11. Wayland still scales from 96.
+Patch0:		kde-gtk-config-6.8.1-x11-fontdpi.patch
 BuildRequires:	cmake(ECM)
 BuildRequires:	cmake(KF6I18n)
 BuildRequires:	cmake(KF6IconThemes)

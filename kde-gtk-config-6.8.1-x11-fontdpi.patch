@@ -1,0 +1,70 @@
+diff -ruN a/kded/configvalueprovider.cpp b/kded/configvalueprovider.cpp
+--- a/kded/configvalueprovider.cpp	2026-10-20 11:03:36.000000000 +0200
++++ b/kded/configvalueprovider.cpp	2026-10-21 23:46:05.508573059 +0200
+@@ -522,6 +522,22 @@
+     return std::clamp(scaleFactor, 1.0, double(MAX_GDK_SCALE));
+ }
+ 
++int ConfigValueProvider::fontDpi() const
++{
++    KConfigGroup configGroup = fontsConfig->group(QStringLiteral("General"));
++    int fontDpi = 96; // On wayland we want to enforce a scale of one for the fonts as we'll use wayland scaling
++
++    if (KWindowSystem::isPlatformX11()) {
++        fontDpi = configGroup.readEntry(QStringLiteral("forceFontDPI"), 0);
++    }
++
++    if (fontDpi <= 0) {
++        return 0;
++    }
++
++    return std::clamp(fontDpi, MIN_FONT_DPI, MAX_FONT_DPI);
++}
++
+ QString ConfigValueProvider::windowDecorationButtonsOrderInGtkNotation(const QString &kdeConfigValue) const
+ {
+     QString gtkNotation;
+diff -ruN a/kded/configvalueprovider.h b/kded/configvalueprovider.h
+--- a/kded/configvalueprovider.h	2026-10-20 11:03:36.000000000 +0200
++++ b/kded/configvalueprovider.h	2026-10-21 23:46:05.488481159 +0200
+@@ -46,6 +46,11 @@
+     // is disabled.
+     double x11GlobalScaleFactor() const;
+ 
++    // The Force Font DPI setting from the fonts kcm. Returns 0
++    // if disabled. On Wayland the configured value is ignored and
++    // 96 is returned, so text scale stays 1.0.
++    int fontDpi() const;
++
+ private:
+     QString fontStyleHelper(const QFont &font) const;
+     QString windowDecorationButtonsOrderInGtkNotation(const QString &kdeConfigValue) const;
+diff -ruN a/kded/gtkconfig.cpp b/kded/gtkconfig.cpp
+--- a/kded/gtkconfig.cpp	2026-10-20 11:03:36.000000000 +0200
++++ b/kded/gtkconfig.cpp	2026-10-21 23:46:05.546938075 +0200
+@@ -341,9 +341,24 @@
+     const double x11Scale = configValueProvider->x11GlobalScaleFactor();
+     const int x11ScaleIntegerPart = int(x11Scale);
+ 
+-    int x11TextDpiAbsolute = 96 * 1024 * x11Scale;
++    const int forceFontDpi = configValueProvider->fontDpi();
++
++    int x11TextDpiAbsolute = 96 * 1024;
+     double waylandTextScaleFactor = 1.0;
+ 
++    if (forceFontDpi == 0) {
++        x11TextDpiAbsolute = (96 * 1024) * x11Scale;
++    } else {
++        x11TextDpiAbsolute = (forceFontDpi * 1024);
++
++        if (!KWindowSystem::isPlatformX11()) {
++            x11TextDpiAbsolute *= x11Scale;
++        }
++
++        waylandTextScaleFactor = double(forceFontDpi) / 96.0;
++        waylandTextScaleFactor = std::clamp(waylandTextScaleFactor, 0.5, 3.0);
++    }
++
+     XSettingsEditor::unsetValue(QStringLiteral("Xft/DPI"));
+     SettingsIniEditor::setValue(QStringLiteral("gtk-xft-dpi"), x11TextDpiAbsolute);
+     XSettingsEditor::setValue(QStringLiteral("Gdk/UnscaledDPI"), x11TextDpiAbsolute / x11ScaleIntegerPart);
